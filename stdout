@@ -1,0 +1,18 @@
+To run the project, use the following command structure:
+`python main.py [COMMAND] [ARGS]...`
+
+Here are the available commands:
+
+*   `list`: Lists all tasks.
+    *   Example: `python main.py list`
+*   `create <NAME> <DESCRIPTION>`: Creates a new task.
+    *   Example: `python main.py create my-task "This is my first task"`
+*   `get <NAME>`: Retrieves a single task by its name.
+    *   Example: `python main.py get my-task`
+*   `update <NAME>`: Updates a task's name or description.
+    *   Example: `python main.py update my-task --description "A new description"`
+*   `delete <NAME>`: Deletes a task.
+    *   Example: `python main.py delete my-task`
+
+You can also get help by running:
+`python main.py --help`
