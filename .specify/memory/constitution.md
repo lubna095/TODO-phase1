@@ -1,55 +1,36 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+To ensure the Feedback Flywheel and Spec-Driven Development (SDD) principles are strictly followed for the remainder of your hackathon, the constitution.md needs to act as the "Law of the Land." It prevents the agent from skipping steps or making the code too complex.
 
-## Core Principles
+Here is the recommended content for your .specify\memory\constitution.md based on your Phase 1 success and your upcoming Phase 2 goals:
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+Project Constitution: Hackathon To-Do App
+1. Core Principles
+Spec-Driven Development (SDD): No code shall be written before a spec.md, plan.md, and tasks.md exist in the feature directory.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Vertical Slicing: Each feature must be implemented in independent, testable user stories (P1, P2, P3).
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Authoritative Source: The specs/ directory is the source of truth. If the code deviates from the spec, the code is wrong.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+2. Technical Strategy
+Runtime: Python 3.13+.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+Architecture: Modular design only.
 
-### [PRINCIPLE_6_NAME]
+src/models.py: Pure data structures (Dataclasses).
 
+src/services.py: Business logic and data persistence. No print or input.
 
-[PRINCIPLE__DESCRIPTION]
+src/cli.py: User interface and interaction loop.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Persistence (Phase 2): Use JSON for storage to maintain simplicity and human-readability.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+3. The Feedback Flywheel
+Record: Every significant prompt and response must be logged in history/prompts/.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Reflect: Each PHR must include a "Reflection" note on failure modes or successful patterns.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Iterate: Use the reflection from previous tasks to improve the prompts for the next task.
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+4. Constraint Gates
+Gate 01: Any new dependency must be justified in an ADR (Architecture Decision Record).
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Gate 02: All services.py logic must have 100% test coverage in pytest before the CLI is updated.
